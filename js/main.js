@@ -35,8 +35,8 @@ rnnPlayer = new mm.Player(false, {
   stop: () => { }
 });
 
-rnn_steps = 20;
-rnn_temperature = 1.5;
+rnn_steps = 20; // 生成するステップ数
+rnn_temperature = 1.5; // ランダム性の強さ 大きいほど入力と異なる出力となる
 
 function play() {
   if (rnnPlayer.isPlaying()) {
