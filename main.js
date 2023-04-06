@@ -20,12 +20,6 @@ const TWINKLE_TWINKLE = {
   totalTime: 8
 };
 
-// ピアノロールの定義
-viz = new mm.PianoRollSVGVisualizer(TWINKLE_TWINKLE, document.getElementById('piano-roll'), {
-  noteHeight: 20, // 音符の高さ
-  pixelsPerTimeStep: 70 // ステップごとのピクセル（幅）
-})
-
 // MusicRNN のモデルの初期化
 music_rnn = new mm.MusicRNN('https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn');
 music_rnn.initialize();
@@ -35,18 +29,11 @@ const vizPlayer = new mm.Player(false, {
   stop: () => { }
 });
 
-// 再生開始
-const start = () => {
-  vizPlayer.start(TWINKLE_TWINKLE);
-}
-
-// 再生停止
-const stop = () => {
-  vizPlayer.stop();
-}
-
 // モデルが生成したメロディ用のプレイヤー
-rnnPlayer = new mm.Player();
+rnnPlayer = new mm.Player(false, {
+  run: (note) => viz.redraw(note),
+  stop: () => { }
+});
 
 rnn_steps = 20;
 rnn_temperature = 1.5;
@@ -64,14 +51,21 @@ function play() {
     .continueSequence(qns, rnn_steps, rnn_temperature)
     .then((output) => {
       console.log(output)
+      console.log(output.notes)
+
+      // ピアノロールの作成
+      viz = new mm.PianoRollSVGVisualizer(output, document.getElementById('piano-roll-output'), {
+        noteHeight: 20, // 音符の高さ
+        pixelsPerTimeStep: 70 // ステップごとのピクセル（幅）
+      })
+
+      // ドキュメントに表示
+      viz.draw()
+
+      // 再生
       rnnPlayer.start(output)
     });
 }
 
-
-const buttonStart = document.getElementById("start-button");
-buttonStart.addEventListener("click", start);
-const buttonStop = document.getElementById("stop-button");
-buttonStop.addEventListener("click", stop);
 const buttonPlay = document.getElementById("play-button");
 buttonPlay.addEventListener("click", play);
