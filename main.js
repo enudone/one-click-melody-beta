@@ -20,19 +20,23 @@ const TWINKLE_TWINKLE = {
   totalTime: 8
 };
 
-const player = new mm.Player();
-viz = new mm.PianoRollSVGVisualizer(TWINKLE_TWINKLE, document.getElementById('canvas'));
-
+// ピアノロールの定義
+viz = new mm.PianoRollSVGVisualizer(TWINKLE_TWINKLE, document.getElementById('piano-roll'), {
+  noteHeight: 20, // 音符の高さ
+  pixelsPerTimeStep: 70 // ステップごとのピクセル（幅）
+})
 
 const vizPlayer = new mm.Player(false, {
   run: (note) => viz.redraw(note),
   stop: () => { }
 });
 
+// 再生開始
 const start = () => {
   vizPlayer.start(TWINKLE_TWINKLE);
 }
 
+// 再生停止
 const stop = () => {
   vizPlayer.stop();
 }
