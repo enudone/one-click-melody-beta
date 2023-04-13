@@ -1,5 +1,3 @@
-// 参考資料: https://hello-magenta.glitch.me/
-
 const TWINKLE_TWINKLE = {
   notes: [
     { pitch: 60, startTime: 0.0, endTime: 0.5 },
@@ -30,15 +28,17 @@ const vizPlayer = new mm.Player(false, {
 });
 
 // モデルが生成したメロディ用のプレイヤー
-rnnPlayer = new mm.Player(false, {
+const rnnPlayer = new mm.Player(false, {
   run: (note) => viz.redraw(note),
   stop: () => { }
 });
 
-rnn_steps = 20; // 生成するステップ数
-rnn_temperature = 1.5; // ランダム性の強さ 大きいほど入力と異なる出力となる
+const rnn_steps = 20; // 生成するステップ数
+const rnn_temperature = 1.5; // ランダム性の強さ 大きいほど入力と異なる出力となる
+let latestOutput = {} // 生成したメロディの格納先
 
-function play() {
+
+function generate() {
   if (rnnPlayer.isPlaying()) {
     rnnPlayer.stop();
     return;
@@ -61,11 +61,18 @@ function play() {
 
       // ドキュメントに表示
       viz.draw()
-
-      // 再生
-      rnnPlayer.start(output)
+      // 変数に格納
+      latestOutput = output
     });
 }
 
+function play() {
+  // console.log(latestOutput)
+  // 再生
+  rnnPlayer.start(latestOutput)
+}
+
+const buttonGenerate = document.getElementById("generate-button");
+buttonGenerate.addEventListener("click", generate);
 const buttonPlay = document.getElementById("play-button");
 buttonPlay.addEventListener("click", play);
