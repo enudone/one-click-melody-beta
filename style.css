@@ -1,0 +1,71 @@
+body {
+  background-color: lightgray;
+}
+
+.container {
+  margin: 30px 60px;
+}
+
+.page-header {
+  font-size: 40px;
+}
+
+.section-header {
+  font-size: 20px;
+}
+
+.section-wrapper {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  /* 角の丸み */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* シャドウ効果 */
+}
+
+.button-group {
+  margin-top: 10px;
+}
+
+.button-normal {
+  background-color: #03A9F4;
+  /* ボタンの背景色 */
+  color: #ffffff;
+  /* ボタンのテキスト色 */
+  padding: 8px 16px;
+  /* ボタン内の余白 */
+  font-size: 16px;
+  /* フォントサイズ */
+  border: none;
+  /* ボーダーを削除 */
+  border-radius: 4px;
+  /* 角の丸み */
+  cursor: pointer;
+  /* カーソルをポインターに変更 */
+  outline: none;
+  /* アウトラインを削除 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* シャドウ効果 */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  /* ホバーおよびフォーカス時のアニメーション */
+}
+
+/* ホバー時のスタイル */
+.button-normal:hover {
+  background-color: #0288D1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* フォーカス時のスタイル */
+.button-normal:focus {
+  background-color: #0288D1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ボタンが無効化されている場合のスタイル */
+.button-normal:disabled {
+  background-color: #bdbdbd;
+  box-shadow: none;
+  cursor: default;
+}

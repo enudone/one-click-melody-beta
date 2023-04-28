@@ -42,7 +42,7 @@ function generate() {
 
       // ピアノロールの作成
       viz = new mm.PianoRollSVGVisualizer(output, document.getElementById('piano-roll-output'), {
-        noteHeight: 10, // 音符の高さ
+        noteHeight: 15, // 音符の高さ
         pixelsPerTimeStep: 120 // ステップごとのピクセル（幅）
       })
 

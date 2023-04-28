@@ -3,15 +3,23 @@
 <head>
   <!-- Load @magenta/music -->
   <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div>
-    <button id="generate-button">Generate</button>
-    <button id="play-button">Play</button>
-  </div>
-  <div>
-    <svg id="piano-roll-output"></svg>
+  <div class="container">
+    <div class="page-header">One Click Melody β</div>
+    <div class="section-wrapper">
+      <div class="section-header">Control Panel</div>
+      <div class="button-group">
+        <button id="generate-button" class="button-normal">Generate</button>
+        <button id="play-button" class="button-normal">Play</button>
+      </div>
+    </div>
+    <div class="section-wrapper">
+      <div class="section-header">Output</div>
+      <svg id="piano-roll-output"></svg>
+    </div>
   </div>
 
   <script src="js/main.js"></script>
