@@ -33,7 +33,7 @@ const rnnPlayer = new mm.Player(false, {
   stop: () => { }
 });
 
-const rnn_steps = 20; // 生成するステップ数
+const rnn_steps = 32; // 生成するステップ数 32 steps で2小説
 const rnn_temperature = 1.5; // ランダム性の強さ 大きいほど入力と異なる出力となる
 let latestOutput = {} // 生成したメロディの格納先
 
@@ -55,8 +55,8 @@ function generate() {
 
       // ピアノロールの作成
       viz = new mm.PianoRollSVGVisualizer(output, document.getElementById('piano-roll-output'), {
-        noteHeight: 20, // 音符の高さ
-        pixelsPerTimeStep: 70 // ステップごとのピクセル（幅）
+        noteHeight: 10, // 音符の高さ
+        pixelsPerTimeStep: 120 // ステップごとのピクセル（幅）
       })
 
       // ドキュメントに表示
